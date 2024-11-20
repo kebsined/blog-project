@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { Footer, Header } from './Components';
+import { Header } from './Components';
+import { Footer } from './Components/Footer/Footer';
 
 const AppColumn = styled.div`
 	margin: 0 auto;
