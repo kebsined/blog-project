@@ -6,6 +6,7 @@ const Description = styled.div`
 	align-self: center;
 	justify-self: center;
 	font-style: italic;
+	font-weight: bold;
 `;
 
 const HeaderContainer = ({ className }) => (
@@ -28,4 +29,5 @@ export const Header = styled(HeaderContainer)`
 	padding: 35px 55px;
 	box-shadow: 0 5px 20px #000;
 	background-color: #fbf5df;
+	align-items: center;
 `;
