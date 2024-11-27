@@ -4,3 +4,4 @@ export * from './Icon/Icon';
 export * from './input/Input';
 export * from './button/Button';
 export * from './h2/h2';
+export * from './error-block/errorBlock';
