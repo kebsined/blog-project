@@ -10,7 +10,11 @@ export const Icon = styled(IconContainer)`
 	text-shadow: ${({ textShadow = '0 4px 5px #000000ce' }) => textShadow};
 	color: #000;
 	text-decoration: none;
+	color: ${({ disabled }) => (disabled ? '#ccc' : '#000')};
 	&:active {
 		transform: scale(0.9);
+	}
+	&:hover {
+		cursor: pointer;
 	}
 `;

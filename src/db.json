@@ -6,32 +6,24 @@
 			"password": "qwerty123",
 			"registered_at": "2025-07-26",
 			"role_id": 0
-		},
-
-		{
-			"login": "azxs12345",
-			"password": "qwerty123",
-			"registered_at": "2056-01-02 17:48",
-			"role_id": 2,
-			"id": "0FTSwy9"
 		}
 	],
 	"roles": [
 		{
 			"id": 0,
-			"name": "Admin"
+			"name": "Администратор"
 		},
 		{
 			"id": 1,
-			"name": "Moderator"
+			"name": "Модератор"
 		},
 		{
 			"id": 2,
-			"name": "Reader"
+			"name": "Читатель"
 		},
 		{
 			"id": 3,
-			"name": "Guest"
+			"name": "Гость"
 		}
 	],
 	"posts": [

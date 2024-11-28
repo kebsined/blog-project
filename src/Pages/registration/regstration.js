@@ -57,7 +57,6 @@ const RegistrationContainer = ({ className }) => {
 
 	const onSubmit = ({ login, password }) => {
 		server.register(login, password).then(({ error, res }) => {
-			console.log(res);
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;

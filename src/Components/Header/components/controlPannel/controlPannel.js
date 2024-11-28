@@ -23,9 +23,6 @@ const RigthAligned = styled.div`
 		gap: 20px;
 		font-size: 30px;
 		font-weight: bold;
-		i:hover {
-			cursor: pointer;
-		}
 	}
 	div > i {
 		&:hover {
@@ -64,13 +61,13 @@ const ControlPannelContainer = ({ className }) => {
 				)}
 			</RigthAligned>
 			<RigthAligned>
-				<div onClick={() => navigate(-1)}>
-					<Icon
-						id="fa-angle-double-left"
-						size="45px"
-						textshadow="0 4px 5px #000000ce"
-					/>
-				</div>
+				<Icon
+					onClick={() => navigate(-1)}
+					id="fa-angle-double-left"
+					size="45px"
+					textshadow="0 4px 5px #000000ce"
+				/>
+
 				<Link to="/post">
 					<Icon
 						id="fa-file-text"
