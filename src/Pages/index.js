@@ -1,3 +1,4 @@
 export * from './Authorization/AuthPage';
-export * from './registration/regstration';
+export * from './registration/registration';
 export * from './Users/users';
+export * from './Post/post';

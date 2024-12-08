@@ -2,7 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from './Components';
 import { Footer } from './Components/Footer/Footer';
-import { Authorization, Registration, Users } from './Pages';
+import { Authorization, Post, Registration, Users } from './Pages';
+import { useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from './actions';
 
 const AppColumn = styled.div`
 	margin: 0 auto;
@@ -20,6 +23,19 @@ const Page = styled.div`
 `;
 
 export const Blog = () => {
+	const dispatch = useDispatch();
+
+	useLayoutEffect(() => {
+		const currentUserDataJSON = sessionStorage.getItem('userData');
+		if (!currentUserDataJSON) {
+			return;
+		}
+
+		const currentUserData = JSON.parse(currentUserDataJSON);
+
+		dispatch(setUser({ ...currentUserData, roleId: Number(currentUserData.roleId) }));
+	}, [dispatch]);
+
 	return (
 		<AppColumn>
 			<Header />
@@ -30,7 +46,7 @@ export const Blog = () => {
 					<Route path="Register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
 					<Route path="/post" element={<div>New Post</div>} />
-					<Route path="/post/:postId" element={<div> Post</div>} />
+					<Route path="/post/:id" element={<Post />} />
 					<Route path="*" element={<div>Error</div>} />
 					<Route path="*" element={<div> Error</div>} />
 				</Routes>
