@@ -1,7 +1,25 @@
 import styled from 'styled-components';
 import { Icon } from '../../../../../../Components';
+import { useDispatch } from 'react-redux';
+import { CLOSE_MODAL, openModal, removeCommentAsync } from '../../../../../../actions';
+import { useServerRequest } from '../../../../../../hooks';
 
-const CommentContainer = ({ className, id, author, content, publishedAt }) => {
+const CommentContainer = ({ className, id, author, content, publishedAt, postId }) => {
+	const dispatch = useDispatch();
+	const requestServer = useServerRequest();
+	const onCommentRemove = (id) => {
+		dispatch(
+			openModal({
+				text: 'Удалить комментарий?',
+				onConfirm: () => {
+					dispatch(removeCommentAsync(requestServer, postId, id));
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL),
+			}),
+		);
+	};
+
 	return (
 		<div className={className}>
 			<div className="comment-block">
@@ -10,7 +28,7 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
 						id="fa-user-circle-o"
 						size="20px"
 						onClick={() => {}}
-						title="Отправить комментарий"
+						title="Пользователь"
 					>
 						{author}
 					</Icon>
@@ -19,7 +37,7 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
 						id="fa-calendar-o"
 						size="20px"
 						onClick={() => {}}
-						title="Отправить комментарий"
+						title="Дата публикации"
 					>
 						{publishedAt}
 					</Icon>
@@ -27,7 +45,12 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
 				<div className="text">{content}</div>
 			</div>
 			<div className="trash">
-				<Icon id="fa-trash-o" size="30px" />
+				<Icon
+					id="fa-trash-o"
+					size="30px"
+					title="Удалить комментарий"
+					onClick={() => onCommentRemove(id)}
+				/>
 			</div>
 		</div>
 	);

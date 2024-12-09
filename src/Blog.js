@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { Header } from './Components';
+import { Header, Modal } from './Components';
 import { Footer } from './Components/Footer/Footer';
 import { Authorization, Post, Registration, Users } from './Pages';
 import { useLayoutEffect } from 'react';
@@ -15,7 +15,7 @@ const AppColumn = styled.div`
 	width: 1000px;
 	min-height: 100%;
 	background-color: #fbf5df;
-	height: 2200px;
+	height: 1500px;
 `;
 
 const Page = styled.div`
@@ -51,7 +51,9 @@ export const Blog = () => {
 					<Route path="*" element={<div> Error</div>} />
 				</Routes>
 			</Page>
+
 			<Footer />
+			<Modal />
 		</AppColumn>
 	);
 };
