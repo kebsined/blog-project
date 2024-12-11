@@ -1,7 +1,30 @@
+import { useDispatch } from 'react-redux';
 import { Icon } from '../../../../Components';
 import styled from 'styled-components';
+import { CLOSE_MODAL, openModal, removePostAsync } from '../../../../actions';
+import { useServerRequest } from '../../../../hooks';
+import { useNavigate } from 'react-router-dom';
 
-const SpecialPannelContainer = ({ className, publishedAt, editButton }) => {
+const SpecialPannelContainer = ({ id, className, publishedAt, editButton }) => {
+	const dispatch = useDispatch();
+	const requestServer = useServerRequest();
+	const navigate = useNavigate();
+
+	const onPostRemove = (id) => {
+		dispatch(
+			openModal({
+				text: 'Удалить статью?',
+				onConfirm: () => {
+					dispatch(removePostAsync(requestServer, id)).then(() => {
+						navigate('/');
+					});
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL),
+			}),
+		);
+	};
+
 	return (
 		<div className={className}>
 			<div className="date">
@@ -11,9 +34,10 @@ const SpecialPannelContainer = ({ className, publishedAt, editButton }) => {
 			<div className="operations">
 				{editButton}
 				<Icon
+					className="trash"
 					id="fa-trash-o"
 					size="25px"
-					onClick={() => {}}
+					onClick={() => onPostRemove(id)}
 					title="Удалить статью"
 				/>
 			</div>
@@ -35,10 +59,16 @@ export const SpecialPannel = styled(SpecialPannelContainer)`
 		:active {
 			transform: none;
 		}
+		opacity: ${({ publishedAt }) => (publishedAt ? 100 : 0)};
 	}
 
 	.operations {
 		display: flex;
 		gap: 30px;
+		margin-right: ${({ publishedAt }) => (publishedAt ? '0' : '-45px')};
+	}
+
+	.trash {
+		opacity: ${({ publishedAt }) => (publishedAt ? 100 : 0)};
 	}
 `;

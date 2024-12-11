@@ -45,7 +45,7 @@ export const Blog = () => {
 					<Route path="Login" element={<Authorization />} />
 					<Route path="Register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
-					<Route path="/post" element={<div>New Post</div>} />
+					<Route path="/post" element={<Post />} />
 					<Route path="/post/:id" element={<Post />} />
 					<Route path="/post/:id/edit" element={<Post />} />
 					<Route path="*" element={<div>Error</div>} />

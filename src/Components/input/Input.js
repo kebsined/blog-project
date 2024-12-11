@@ -10,4 +10,7 @@ export const Input = styled(InputContainer)`
 	padding: 17px;
 	font-size: 18px;
 	width: ${({ width = '100%' }) => width};
+	&::placeholder {
+		font-style: italic;
+	}
 `;

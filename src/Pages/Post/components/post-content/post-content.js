@@ -13,6 +13,7 @@ const PostContentContainer = ({
 			<img src={imageUrl} alt="post img" />
 			<H2>{title}</H2>
 			<SpecialPannel
+				id={id}
 				publishedAt={publishedAt}
 				editButton={
 					<Icon
