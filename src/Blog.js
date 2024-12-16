@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header, Modal } from './Components';
 import { Footer } from './Components/Footer/Footer';
-import { Authorization, Post, Registration, Users } from './Pages';
+import { Authorization, Main, Post, Registration, Users } from './Pages';
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
@@ -12,10 +12,9 @@ const AppColumn = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 1000px;
+	width: 1300px;
 	min-height: 100%;
 	background-color: #fbf5df;
-	height: 1500px;
 `;
 
 const Page = styled.div`
@@ -41,7 +40,7 @@ export const Blog = () => {
 			<Header />
 			<Page>
 				<Routes>
-					<Route path="/" element={<div>Main Page</div>} />
+					<Route path="/" element={<Main />} />
 					<Route path="Login" element={<Authorization />} />
 					<Route path="Register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
