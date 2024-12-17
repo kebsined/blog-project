@@ -35,7 +35,8 @@ const PostCardContainer = ({
 export const PostCard = styled(PostCardContainer)`
 	display: flex;
 	border: 2px solid #000;
-	width: 370px;
+	width: 300px;
+	height: 250px;
 
 	img {
 		width: 100%;
@@ -43,6 +44,7 @@ export const PostCard = styled(PostCardContainer)`
 
 	h3 {
 		margin: 0;
+		overflow: hidden;
 	}
 	.post-card-footer {
 		display: flex;

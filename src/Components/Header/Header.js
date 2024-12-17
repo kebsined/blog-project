@@ -24,10 +24,10 @@ export const Header = styled(HeaderContainer)`
 	grid-template-columns: 1fr 1fr 1fr;
 	position: fixed;
 	top: 0;
-	width: 1300px;
-	height: 175px;
-	padding: 35px 55px;
+	width: 1100px;
+	height: 130px;
+	padding: 15px 55px;
 	box-shadow: 0 5px 20px #000;
 	background-color: #fbf5df;
-	align-items: center;
+	align-items: stretch;
 `;

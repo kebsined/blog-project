@@ -32,8 +32,12 @@ const FooterContainer = ({ className }) => {
 };
 
 export const Footer = styled(FooterContainer)`
-	height: 175px;
+	position: fixed;
+	bottom: 0;
+	width: 1100px;
+	height: 100px;
 	box-shadow: 0 0 30px #000;
+	background-color: #fbf5df;
 	display: flex;
 	justify-content: space-between;
 	padding: 0 73px 0 53px;

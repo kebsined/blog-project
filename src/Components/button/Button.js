@@ -11,7 +11,7 @@ const ButtonContainer = ({ className, children, width, ...props }) => {
 export const Button = styled(ButtonContainer)`
 	width: ${({ width = '100%' }) => width};
 	height: 2rem;
-	background-color: #aaa2b8;
+	background-color: ${({ disabled }) => (disabled ? 'inherit' : '#aaa2b8')};
 	text-decoration: none;
 	border-radius: 5rem;
 	border: none;
@@ -20,9 +20,9 @@ export const Button = styled(ButtonContainer)`
 	color: #000;
 	font-weight: bold;
 	&:active {
-		transform: scale(0.9);
+		transform: ${({ disabled }) => (disabled ? 'scale(1)' : 'scale(0.9)')};
 	}
 	&:hover {
-		cursor: pointer;
+		cursor: ${({ disabled }) => (disabled ? 'default' : 'poiner')};
 	}
 `;
