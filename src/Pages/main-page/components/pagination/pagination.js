@@ -30,10 +30,13 @@ const PaginationContainer = ({ className, page, lastPage, setPage }) => {
 };
 
 export const Pagination = styled(PaginationContainer)`
-	margin-top: 50px;
 	display: flex;
+	margin-bottom: 0;
 	gap: 20px;
+	justify-content: center;
 	align-items: center;
+	position: static;
+	bottom: 0;
 	Button {
 		height: 40px;
 	}

@@ -32,14 +32,14 @@ const FooterContainer = ({ className }) => {
 };
 
 export const Footer = styled(FooterContainer)`
-	position: fixed;
 	bottom: 0;
 	width: 1100px;
-	height: 100px;
+	height: 130px;
 	box-shadow: 0 0 30px #000;
 	background-color: #fbf5df;
 	display: flex;
 	justify-content: space-between;
 	padding: 0 73px 0 53px;
 	align-items: center;
+	/* position: relative; */
 `;

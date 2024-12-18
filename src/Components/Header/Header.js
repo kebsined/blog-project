@@ -30,4 +30,5 @@ export const Header = styled(HeaderContainer)`
 	box-shadow: 0 5px 20px #000;
 	background-color: #fbf5df;
 	align-items: stretch;
+	z-index: 2;
 `;
