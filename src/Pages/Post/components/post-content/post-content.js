@@ -32,6 +32,7 @@ const PostContentContainer = ({
 export const PostContent = styled(PostContentContainer)`
 	margin: 50px 50px 25px 50px;
 	text-align: justify;
+	overflow-wrap: break-word;
 	img {
 		float: left;
 		margin: 0 30px 20px 0;

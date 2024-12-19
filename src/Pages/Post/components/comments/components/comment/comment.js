@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import { Icon } from '../../../../../../Components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CLOSE_MODAL, openModal, removeCommentAsync } from '../../../../../../actions';
 import { useServerRequest } from '../../../../../../hooks';
+import { checkAccess } from '../../../../../../utils';
+import { ROLE } from '../../../../../../constants';
+import { selectUserRole } from '../../../../../../selectors';
 
 const CommentContainer = ({ className, id, author, content, publishedAt, postId }) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
+	const roleId = useSelector(selectUserRole);
 	const onCommentRemove = (id) => {
 		dispatch(
 			openModal({
@@ -19,6 +23,8 @@ const CommentContainer = ({ className, id, author, content, publishedAt, postId 
 			}),
 		);
 	};
+
+	const accessToDelete = checkAccess([ROLE.ADMIN, ROLE.MODERATOR], roleId);
 
 	return (
 		<div className={className}>
@@ -39,14 +45,16 @@ const CommentContainer = ({ className, id, author, content, publishedAt, postId 
 				</div>
 				<div className="text">{content}</div>
 			</div>
-			<div className="trash">
-				<Icon
-					id="fa-trash-o"
-					size="30px"
-					title="Удалить комментарий"
-					onClick={() => onCommentRemove(id)}
-				/>
-			</div>
+			{accessToDelete && (
+				<div className="trash">
+					<Icon
+						id="fa-trash-o"
+						size="30px"
+						title="Удалить комментарий"
+						onClick={() => onCommentRemove(id)}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };

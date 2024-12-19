@@ -85,6 +85,7 @@ export const PostForm = styled(PostFormContainer)`
 		min-height: 100px;
 		border: 1px solid #000;
 		padding: 15px;
+		border-radius: 1rem;
 	}
 	img {
 		float: left;

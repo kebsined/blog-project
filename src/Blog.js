@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { Header, Modal } from './Components';
+import { Error, Header, Modal } from './Components';
 import { Footer } from './Components/Footer/Footer';
 import { Authorization, Main, Post, Registration, Users } from './Pages';
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
+import { ERROR } from './constants';
 
 const AppColumn = styled.div`
 	margin: 0 auto;
@@ -47,8 +48,7 @@ export const Blog = () => {
 					<Route path="/post" element={<Post />} />
 					<Route path="/post/:id" element={<Post />} />
 					<Route path="/post/:id/edit" element={<Post />} />
-					<Route path="*" element={<div>Error</div>} />
-					<Route path="*" element={<div> Error</div>} />
+					<Route path="*" element={<Error error={ERROR.PAGE_NOT_EXIST} />} />
 				</Routes>
 			</Page>
 

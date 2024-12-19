@@ -69,6 +69,7 @@ export const Main = styled(MainContainer)`
 		grid-template-columns: repeat(3, 1fr);
 		gap: 25px;
 		place-items: center;
+		margin-top: 10px;
 	}
 	.no-posts-found {
 		text-align: center;

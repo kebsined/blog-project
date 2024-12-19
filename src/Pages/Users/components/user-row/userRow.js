@@ -17,15 +17,16 @@ const UserRowContainer = ({
 
 	const [selectedRoleId, setSelectedRoleId] = useState(userRoleId);
 
-	const requestServer = useServerRequest('fetchRoles');
+	const requestServer = useServerRequest();
 
 	const onRoleChange = ({ target }) => {
 		setSelectedRoleId(Number(target.value));
 	};
 
 	const onRoleSave = (userId, newUserRoleId) => {
-		requestServer('updateUserRole', userId, newUserRoleId).then(() => {});
-		setInitialRoleId(newUserRoleId);
+		requestServer('updateUserRole', userId, newUserRoleId).then(() => {
+			setInitialRoleId(newUserRoleId);
+		});
 	};
 
 	const isBtnDisabled = selectedRoleId === initialRoleId;

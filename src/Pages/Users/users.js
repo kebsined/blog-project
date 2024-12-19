@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { H2, Content } from '../../Components';
+import { useSelector } from 'react-redux';
+import { H2, PrivateContent } from '../../Components';
 import { UserRow, TableRow } from './components';
 import { useServerRequest } from '../../hooks';
 import { ROLE } from '../../constants';
+import { checkAccess } from '../../utils';
+import { selectUserRole } from '../../selectors';
 
 import styled from 'styled-components';
 
@@ -11,31 +14,40 @@ const UsersContainer = ({ className }) => {
 	const [roles, setRoles] = useState([]);
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [shouldUpdateUserlist, setShouldUpdateUserList] = useState(false);
+	const userRole = useSelector(selectUserRole);
 
-	const requestServer = useServerRequest('fetchRoles');
+	const requestServer = useServerRequest();
 
 	useEffect(() => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
+
 		Promise.all([requestServer('fetchUsers'), requestServer('fetchRoles')]).then(
 			([usersRes, rolesRes]) => {
 				if (usersRes.error || rolesRes.error) {
-					setErrorMessage(rolesRes.error || usersRes.error);
+					setErrorMessage(usersRes.error || rolesRes.error);
 					return;
 				}
 				setUsers(usersRes.res);
+
 				setRoles(rolesRes.res);
 			},
 		);
-	}, [requestServer, shouldUpdateUserlist]);
+	}, [requestServer, shouldUpdateUserlist, userRole]);
 
 	const onUserRemove = (userId) => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
 		requestServer('removeUser', userId).then(() => {
 			setShouldUpdateUserList(!shouldUpdateUserlist);
 		});
 	};
 
 	return (
-		<div className={className}>
-			<Content error={errorMessage}>
+		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
+			<div className={className}>
 				<H2>Пользователи</H2>
 				<div>
 					<TableRow>
@@ -57,8 +69,8 @@ const UsersContainer = ({ className }) => {
 						/>
 					))}
 				</div>
-			</Content>
-		</div>
+			</div>
+		</PrivateContent>
 	);
 };
 

@@ -9,6 +9,8 @@ export const Input = styled(InputContainer)`
 	height: 40px;
 	padding: 17px;
 	font-size: 18px;
+	border: 2px solid #000;
+	border-radius: 2rem;
 	width: ${({ width = '100%' }) => width};
 	&::placeholder {
 		font-style: italic;

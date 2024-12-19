@@ -3,14 +3,18 @@ import { Comment } from './components';
 import { Icon } from '../../../../Components';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserId } from '../../../../selectors';
+import { selectUserId, selectUserRole } from '../../../../selectors';
 import { useServerRequest } from '../../../../hooks';
 import { addCommentAsync } from '../../../../actions';
+import { checkAccess } from '../../../../utils';
+import { ROLE } from '../../../../constants';
 
 const CommentsContainer = ({ className, comments, postId }) => {
 	const [newComment, setNewComment] = useState('');
 	const userId = useSelector(selectUserId);
+	const roleId = useSelector(selectUserRole);
 	const dispatch = useDispatch();
+
 	const requestServer = useServerRequest();
 
 	const onNewCommentAdd = (userId, postId, content) => {
@@ -18,22 +22,26 @@ const CommentsContainer = ({ className, comments, postId }) => {
 		setNewComment('');
 	};
 
+	const isGuest = checkAccess([ROLE.GUEST], roleId);
+
 	return (
 		<div className={className}>
-			<div className="new-comment">
-				<textarea
-					name="comment"
-					value={newComment}
-					placeholder="Оставьте комментарий...."
-					onChange={({ target }) => setNewComment(target.value)}
-				/>
-				<Icon
-					id="fa-paper-plane-o"
-					size="25px"
-					onClick={() => onNewCommentAdd(postId, userId, newComment)}
-					title="Отправить комментарий"
-				/>
-			</div>
+			{!isGuest && (
+				<div className="new-comment">
+					<textarea
+						name="comment"
+						value={newComment}
+						placeholder="Оставьте комментарий...."
+						onChange={({ target }) => setNewComment(target.value)}
+					/>
+					<Icon
+						id="fa-paper-plane-o"
+						size="25px"
+						onClick={() => onNewCommentAdd(postId, userId, newComment)}
+						title="Отправить комментарий"
+					/>
+				</div>
+			)}
 			<div className="comments">
 				{comments.map(({ id, author, content, publishedAt }) => (
 					<Comment

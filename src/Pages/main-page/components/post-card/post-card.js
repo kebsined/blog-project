@@ -37,9 +37,17 @@ export const PostCard = styled(PostCardContainer)`
 	border: 2px solid #000;
 	width: 300px;
 	height: 250px;
+	border-radius: 1rem;
+	box-shadow: 5px 10px 15px #000;
+	&:active {
+		transform: scale(0.95);
+		box-shadow: 10px 20px 30px #000;
+	}
 
 	img {
 		width: 100%;
+		border-top-right-radius: 1rem;
+		border-top-left-radius: 1rem;
 	}
 
 	h3 {
