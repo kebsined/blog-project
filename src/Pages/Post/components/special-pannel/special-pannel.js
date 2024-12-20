@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { checkAccess } from '../../../../utils';
 import { ROLE } from '../../../../constants';
 import { selectUserRole } from '../../../../selectors';
+import PropTypes from 'prop-types';
 
 const SpecialPannelContainer = ({ id, className, publishedAt, editButton }) => {
 	const dispatch = useDispatch();
@@ -79,3 +80,9 @@ export const SpecialPannel = styled(SpecialPannelContainer)`
 		opacity: ${({ publishedAt }) => (publishedAt ? 100 : 0)};
 	}
 `;
+
+SpecialPannel.propTypes = {
+	id: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	editButton: PropTypes.node.isRequired,
+};
