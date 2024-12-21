@@ -51,7 +51,6 @@ export const Blog = () => {
 					<Route path="*" element={<Error error={ERROR.PAGE_NOT_EXIST} />} />
 				</Routes>
 			</Page>
-
 			<Footer />
 			<Modal />
 		</AppColumn>
